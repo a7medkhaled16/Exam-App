@@ -3,7 +3,7 @@
 
     
 
-   <div class="my-8">
+   <div class="my-8 cursor-pointer" routerLink="/auth/register" >
  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.75" y="0.75" width="38.5" height="38.5" stroke="#E5E7EB" stroke-width="1.5"/>
 <path d="M14 16L10 20M10 20L14 24M10 20H30" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -31,7 +31,7 @@ user@example.com. <a routerLink="/auth/register" class="font-medium text-blue-60
 }@else{
     <p class="mt-6 text-center text-sm text-gray-500">
       Didn’t receive the code? 
-      <a routerLink="/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+      <a routerLink="auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
         Resend
       </a>
     </p>
