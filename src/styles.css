@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@source "../node_modules/flowbite";
+@import "tailwindcss-primeui";
+
+@theme{
+    /* --color-main:#0aad0a; */
+       --color-main:#155DFC;
+    --color-light:#f0f3f2;
+    --color-rating:#ffc908;
+    --shadow-proshadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+}
+
+@layer components{
+    .main-btn{
+        @apply bg-main text-white rounded my-3 px-5 py-2 w-full hover:bg-main/80 cursor-pointer
+    }
+    .main-input{
+        @apply bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+    }
+}
+.font{
+    font-family: Geist Mono;
+}
+

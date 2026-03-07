@@ -1,0 +1,58 @@
+<div class="flex h-full w-full items-center justify-center bg-white px-8 py-16">
+  <div class="w-full max-w-sm">
+
+    
+
+   <div class="my-8">
+ <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.75" y="0.75" width="38.5" height="38.5" stroke="#E5E7EB" stroke-width="1.5"/>
+<path d="M14 16L10 20M10 20L14 24M10 20H30" stroke="#1F2937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+   </div>
+
+    <!-- Heading -->
+    <h2 class="my-4 text-3xl font-bold text-gray-900">Verifi OTP</h2>
+    <p class="text-sm text-gray-500 mb-5 font">Please enter the 6-digits code we have sent to:
+user@example.com. <a routerLink="/auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+        Edit
+      </a></p>
+
+
+      <!-- Username field -->
+      <div class="flex flex-col gap-1.5 mb-6 font">
+
+        <p-inputOtp
+  [(ngModel)]="otp"
+  [length]="6"
+  styleClass="border"
+/>
+@if(send){
+        <p class="mt-6 text-center text-sm text-gray-500">You can request another code in: 60s</p>
+}@else{
+    <p class="mt-6 text-center text-sm text-gray-500">
+      Didn’t receive the code? 
+      <a routerLink="/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+        Resend
+      </a>
+    </p>
+}
+      </div>
+  
+      <!-- Submit button -->
+     <button class="main-btn font" routerLink="/auth/login"
+            type="button" >
+           Verify Code
+          </button>
+
+
+
+    <!-- Sign-up link -->
+    <p class="mt-6 text-center text-sm text-gray-500 font">
+      Don't have an account?
+      <a routerLink="/auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+        Create yours
+      </a>
+    </p>
+
+  </div>
+</div>
