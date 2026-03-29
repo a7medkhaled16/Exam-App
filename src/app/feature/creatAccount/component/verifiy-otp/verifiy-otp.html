@@ -1,0 +1,49 @@
+<div class="flex h-full w-full items-center justify-center bg-white px-8 py-16">
+  <div class="w-full max-w-sm">
+
+    
+
+   
+
+    <!-- Heading -->
+    <h2 class="my-4 text-3xl font-bold text-gray-900">Cerat Account</h2>
+    <h2 class="my-4 text-3xl font-bold text-main">Verifi OTP</h2>
+    <p class="text-sm text-gray-500 mb-5 font">Please enter the 6-digits code we have sent to:
+user@example.com. <a routerLink="/auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+        Edit
+      </a></p>
+<form action="" [formGroup]="Otpform" (ngSubmit)="confirmotp()">
+  
+
+      <!-- Username field -->
+      <div class="flex flex-col gap-1.5 mb-6 font">
+
+        <p-inputOtp
+        formControlName="otp"
+  [length]="6"
+  styleClass="border"
+/>
+@if(send){
+        <p class="mt-6 text-center text-sm text-gray-500">You can request another code in: 60s</p>
+}@else{
+    <p class="mt-6 text-center text-sm text-gray-500">
+      Didn’t receive the code? 
+      <a routerLink="auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+        Resend
+      </a>
+    </p>
+}
+      </div>
+  
+      <!-- Submit button -->
+     <button class="bg-blue-200 text-black rounded border border-blue-700 my-3 px-5 py-2 w-full hover:bg-blue-300 cursor-pointer font" 
+            type="submit" >
+           Verify Code
+          </button>
+</form>
+
+
+   
+
+  </div>
+</div>

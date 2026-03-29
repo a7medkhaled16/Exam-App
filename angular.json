@@ -111,6 +111,36 @@
           }
         }
       }
+    },
+    "authlib": {
+      "projectType": "library",
+      "root": "projects/authlib",
+      "sourceRoot": "projects/authlib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/authlib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/authlib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/authlib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

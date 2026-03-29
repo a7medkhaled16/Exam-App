@@ -1,0 +1,56 @@
+export interface verifyRes {
+  
+    status: string,
+    code: number,
+    message: string
+}
+
+export interface confirmReq {
+  email: string
+  code: string
+}
+
+export interface registerReq {
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+  firstName: string
+  lastName: string
+  phone: string
+}
+
+
+export interface registerRes {
+  status: boolean
+  code: number
+  payload: Payload
+}
+
+export interface Payload {
+  user: User
+  token: string
+}
+
+export interface User {
+  id: string
+  username: string
+  email: string
+  phone: string
+  firstName: string
+  lastName: string
+  emailVerified: boolean
+  phoneVerified: boolean
+  role: string
+  createdAt: string
+}
+
+
+export interface resetpassReq {
+  token: string
+  newPassword: string
+  confirmPassword: string
+}
+
+
+
