@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../../dist/authlib';
 import { Registerservice } from '../../services/registerservice';
@@ -9,7 +9,7 @@ import { Registerservice } from '../../services/registerservice';
 
 @Component({
   selector: 'app-creat-account',
-  imports: [RouterLink,ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
 templateUrl: './creat-account.html',
   styleUrl: './creat-account.css',
 })

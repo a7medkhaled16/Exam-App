@@ -35,15 +35,17 @@
          
 
            <div class="" dir="ltr">
-           <p-password 
-        formControlName="password"
+           
 
-            styleClass="main-input" 
-             id="username"
-             name="username"
-             [toggleMask]="true"
-            placeholder="********"
-              appendTo="body" />
+               <p-password
+          formControlName="password"
+          [toggleMask]="true"
+          [feedback]="false"
+          placeholder="••••••••"
+          styleClass="w-full"
+          inputStyleClass="main-input w-full"
+        />
+             
               
         </div>
           

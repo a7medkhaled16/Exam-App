@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../dist/authlib';
 
@@ -19,7 +19,7 @@ router=inject(Router)
 
 
 forgetform:FormGroup=new FormGroup({
-  email:new FormControl('')
+  email:new FormControl('',[Validators.required,Validators.email])
 })
 
 forgetpassword(){
