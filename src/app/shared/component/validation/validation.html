@@ -1,0 +1,33 @@
+@if (controls?.errors&&controls?.touched) {
+           <div class="font"> 
+            @if (controls?.getError('required')) {
+            <p class="text-red-700 text-sm">Input is required</p>
+            }
+            @if (controls?.getError('minlength ')) {
+            <p class="text-red-700 text-sm">Must be at least 2 characters long.</p>
+            }
+            @if (controls?.getError('maxlength ')) {
+            <p class="text-red-700 text-sm">Must not exceed 20 characters long.</p>
+            }
+            @if (controls?.getError('email')) {
+            <p class="text-red-700 text-sm">Must be a valid email.</p>
+            }
+            @if (controls?.getError('pattern')) {
+            <p class="text-red-700 text-sm">At least one upper case English letter.</p>
+            <p class="text-red-700 text-sm">At least one lower case English letter.</p>
+            <p class="text-red-700 text-sm">At least one digit.</p>
+            <p class="text-red-700 text-sm">At least one special character.</p>
+            }
+          </div>
+         }
+
+          @if (controls?.getError('mismatch')&&controls?.get('confirmPassword')?.touched) {
+<div>
+          <p class="text-red-700 text-sm">Password do not match</p>  
+</div>
+    }
+          @if (controls?.getError('mismatch')&&controls?.get('newpassword')?.touched) {
+<div>
+          <p class="text-red-700 text-sm">Password do not match</p>  
+</div>
+    }

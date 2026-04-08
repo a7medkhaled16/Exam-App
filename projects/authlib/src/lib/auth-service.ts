@@ -23,7 +23,7 @@ export class AuthService implements authApi {
   }
 
    register(data: registerReq): Observable<registerRes> {
-    return this.httpClient.post<registerRes>(authEndPoint.Register,data).pipe(catchError (err => of(err)))
+    return this.httpClient.post<registerRes>(authEndPoint.Register,data)
   }
 
    login(data: registerReq): Observable<registerRes> {
@@ -31,11 +31,11 @@ export class AuthService implements authApi {
   } 
 
    forgetpassword(data: {username:'string'}): Observable<verifyRes> {
-    return this.httpClient.post<verifyRes>(authEndPoint.ChangePassword,data).pipe(catchError (err => of(err)))
+    return this.httpClient.post<verifyRes>(authEndPoint.ChangePassword,data)
   }
 
    resetpassword(data: resetpassReq): Observable<verifyRes> {
-    return this.httpClient.post<verifyRes>(authEndPoint.ResetPassword,data).pipe(catchError (err => of(err)))
+    return this.httpClient.post<verifyRes>(authEndPoint.ResetPassword,data)
   }
 
 

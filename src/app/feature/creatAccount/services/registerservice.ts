@@ -12,6 +12,5 @@ export class Registerservice {
   phone:string =''
 
 
-
   
 }

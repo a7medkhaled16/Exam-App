@@ -1,40 +1,58 @@
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../../../dist/authlib';
 import { Registerservice } from '../../services/registerservice';
+import { Validation } from "../../../../shared/component/validation/validation";
 
+
+interface ApiError {
+  message: string;
+}
+
+interface ErrorResponse {
+  error: ApiError;
+}
 
 
 @Component({
   selector: 'app-creat-account',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Validation],
 templateUrl: './creat-account.html',
   styleUrl: './creat-account.css',
 })
 export class CreatAccount {
+
+  errorMessage=  signal('');
 
 _authService=inject(AuthService)
 registerservice=inject(Registerservice)
 router=inject(Router)
 
 emailform :FormGroup= new FormGroup({
-  email:new FormControl('')
+  email:new FormControl('',[Validators.required,Validators.email])
 })
+ 
+
 
 sendVerify(){
+this.errorMessage.set('')
   this.registerservice.email=this.emailform.value.email
 this._authService.sendverifiy(this.emailform.value).subscribe({
-  next:(res)=>{
-    console.log(res)
-    this.router.navigate(['/auth/otp']);
-  },
-  error:(err)=>{console.log(err)}
+   next:(res)=>{
+       const response = res as unknown as ErrorResponse;
+      
+      if (response?.error?.message) {
+        this.errorMessage.set(response.error.message) ;
+        return
+      }
+      console.log('full response',res)
+      console.log(this.emailform)
+      this.router.navigate(['/auth/otp']);
+    }
+
 })
-
-
-
 }
 
 }

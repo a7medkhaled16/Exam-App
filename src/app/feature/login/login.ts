@@ -1,35 +1,54 @@
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../../../dist/authlib';
+import { InputText } from 'primeng/inputtext';
+import { Validation } from "../../shared/component/validation/validation";
 
+interface ApiError {
+  message: string;
+}
 
+interface ErrorResponse {
+  error: ApiError;
+}
 
 @Component({
   selector: 'app-login',
-  imports: [PasswordModule,RouterLink,RouterModule,ReactiveFormsModule],
+  imports: [PasswordModule, RouterLink, RouterModule, ReactiveFormsModule, Validation],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
 value:string=''
+  errorMessage=  signal('');
+
 
 _authService=inject(AuthService)
 router=inject(Router)
 
 
 loginform:FormGroup=new FormGroup({
-  username:new FormControl(''),
-  password:new FormControl('')
+  username:new FormControl('',[Validators.required]),
+  password:new FormControl('',[Validators.required])
 })
 
 login(){
+this.errorMessage.set('')
+
+  console.log(this.loginform.value)
   this._authService.login(this.loginform.value).subscribe({
-    next:(res)=>{console.log(res)
-      // this.router.navigate(['/auth/info']);
-    },
-  error:(err)=>{console.log(err)}
+
+    next:(res)=>{
+       const response = res as unknown as ErrorResponse;;
+      
+      if (response?.error?.message) {
+        this.errorMessage.set(response.error.message)
+      }
+      console.log('full response',res)
+      console.log(this.loginform)
+    }
   })
 }
 

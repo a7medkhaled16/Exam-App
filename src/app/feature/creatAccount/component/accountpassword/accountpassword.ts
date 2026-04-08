@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Password, PasswordModule } from 'primeng/password';
 import { AuthService } from '../../../../../../dist/authlib';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Registerservice } from '../../services/registerservice';
+import { Validation } from "../../../../shared/component/validation/validation";
 
 
 @Component({
   selector: 'app-accountpassword',
-  imports: [PasswordModule,ReactiveFormsModule],
+  imports: [PasswordModule, ReactiveFormsModule, Validation],
   templateUrl: './accountpassword.html',
   styleUrl: './accountpassword.css',
 })
@@ -18,12 +19,16 @@ _authService=inject(AuthService)
 registerservice=inject(Registerservice)
 router=inject(Router)
 
+  errorMessage=  signal('');
 
 passform:FormGroup=new FormGroup({
-  password:new FormControl(''),
-  confirmPassword:new FormControl('')
-})
+  password:new FormControl('',[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+  confirmPassword:new FormControl('',[Validators.required])
+},{validators:this.repasswordmatch})
 
+repasswordmatch(control:AbstractControl){
+   return control.get('password')?.value === control.get('confirmPassword')?.value?null:{mismatch:true}
+  }
 
 
 register(){
@@ -41,9 +46,12 @@ register(){
 }
    this._authService.register(data).subscribe({
     next:(res)=>{console.log(res)
-      this.router.navigate(['/auth/login']);
+      // this.router.navigate(['/auth/login']);
     },
-  error:(err)=>{console.log(err),err}
+  error:(err)=>{
+    this.errorMessage.set(err.error.message)
+    console.log('error',err)
+  }
   })
 }
 

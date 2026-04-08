@@ -52,6 +52,8 @@
            type="text"
            placeholder="ahmed"
            class="main-input"  />
+         <app-validation [controls]="infoform.get('firstname')"/>
+
              </div>
 
              <div>
@@ -65,6 +67,8 @@
            type="text"
            placeholder="Khaled"
            class="main-input"  />
+         <app-validation [controls]="infoform.get('lastname')"/>
+
              </div>
 
          </div>
@@ -80,6 +84,19 @@
            type="text"
            placeholder="user123"
            class="main-input"  />
+          @if (infoform.get('username')?.errors&&infoform.get('username')?.touched) {
+           <div class="font"> 
+            @if (infoform.get('username')?.getError('pattern')) {
+                <p class="text-red-700 text-sm">Username must be at least 2 characters.</p>
+                <p class="text-red-700 text-sm">Username can only contain letters, numbers, and underscores.</p>
+            }
+            @if (infoform.get('username')?.getError('required')) {
+                <p class="text-red-700 text-sm">Input is required.</p>
+            }
+         </div>
+        }
+        
+
 
          
 
@@ -192,14 +209,17 @@
                  </li>
              </ul>
          </div>
-         <!-- <label for="phone-input" class="mb-2.5 text-sm font-medium text-heading sr-only">Phone number:</label> -->
+         
          <div class="relative w-full">
 
              <input type="text"
               formControlName="phone"
               name="phone" id="phone-input" class="main-input mx-1"  placeholder="123-456-7890" required />
+
          </div>
      </div>
+         <app-validation [controls]="infoform.get('phone')"/>
+
           
 
        </div>

@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Registerservice } from '../../services/registerservice';
 import { Router } from '@angular/router';
 import { log } from 'console';
+import { Validation } from "../../../../shared/component/validation/validation";
 
 
 @Component({
   selector: 'app-accountinfo',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Validation],
   templateUrl: './accountinfo.html',
   styleUrl: './accountinfo.css',
 })
@@ -18,10 +19,10 @@ router=inject(Router)
 
 
 infoform:FormGroup=new FormGroup({
-  firstname:new FormControl(''),
-  lastname:new FormControl(''),
-  username:new FormControl(''),
-  phone:new FormControl(''),
+  firstname:new FormControl('',[Validators.required]),
+  lastname:new FormControl('',[Validators.required]),
+  username:new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]+$/)]),
+  phone:new FormControl('',[Validators.required]),
 })
 
 submiteinfo(){
