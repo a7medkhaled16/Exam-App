@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { Password, PasswordModule } from 'primeng/password';
-import { AuthService } from '../../../../../../dist/authlib';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Registerservice } from '../../services/registerservice';
-import { Validation } from "../../../../shared/component/validation/validation";
+import { AuthService } from '../../../../../../../dist/authlib';
+import { Validation } from '../../../../../shared/component/validation/validation';
 
 
 @Component({

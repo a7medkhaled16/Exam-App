@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { InputOtpModule } from 'primeng/inputotp';
-import { AuthService } from '../../../../../../dist/authlib';
+import { AuthService } from '../../../../../../../dist/authlib';
 import { Registerservice } from '../../services/registerservice';
+
 
 
 @Component({

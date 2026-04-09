@@ -2,9 +2,8 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
-import { AuthService } from '../../../../dist/authlib';
-import { InputText } from 'primeng/inputtext';
-import { Validation } from "../../shared/component/validation/validation";
+import { AuthService } from '../../../../../dist/authlib';
+import { Validation } from '../../../shared/component/validation/validation';
 
 interface ApiError {
   message: string;

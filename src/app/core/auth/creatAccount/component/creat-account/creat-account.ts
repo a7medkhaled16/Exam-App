@@ -2,9 +2,9 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../../../../dist/authlib';
 import { Registerservice } from '../../services/registerservice';
-import { Validation } from "../../../../shared/component/validation/validation";
+import { AuthService } from '../../../../../../../dist/authlib';
+import { Validation } from '../../../../../shared/component/validation/validation';
 
 
 interface ApiError {

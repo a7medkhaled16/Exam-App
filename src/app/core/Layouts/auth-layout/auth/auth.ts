@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { StaticSide } from '../../../../feature/static-side/static-side';
+import { StaticSide } from '../../../auth/static-side/static-side';
 
 
 @Component({

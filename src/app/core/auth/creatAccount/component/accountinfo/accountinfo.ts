@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Registerservice } from '../../services/registerservice';
 import { Router } from '@angular/router';
-import { log } from 'console';
-import { Validation } from "../../../../shared/component/validation/validation";
+import { Validation } from '../../../../../shared/component/validation/validation';
 
 
 @Component({
