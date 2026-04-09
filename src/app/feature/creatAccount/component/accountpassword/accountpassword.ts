@@ -46,7 +46,7 @@ register(){
 }
    this._authService.register(data).subscribe({
     next:(res)=>{console.log(res)
-      // this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']);
     },
   error:(err)=>{
     this.errorMessage.set(err.error.message)

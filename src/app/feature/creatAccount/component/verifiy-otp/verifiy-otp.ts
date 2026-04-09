@@ -28,7 +28,9 @@ Otpform:FormGroup=new FormGroup({
 
 confirmotp(){
   this._authService.confirmverifiy({email:this.registerservice.email ,code:this.Otpform.value.otp}).subscribe({
-    next:(res)=>{console.log(res)
+    next:(res)=>{
+      console.log(this.registerservice.email,this.Otpform.value.otp)
+      console.log(res)
       this.router.navigate(['/auth/info']);
     },
   error:(err)=>{console.log(err)}

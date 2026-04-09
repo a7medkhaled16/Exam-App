@@ -84,6 +84,8 @@
 
       <!-- Submit button -->
      <button class="main-btn"
+     [disabled]="loginform.invalid"
+     [class.bg-gray-300]="loginform.invalid"
             >
            Login
           </button>

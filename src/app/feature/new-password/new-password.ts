@@ -16,6 +16,7 @@ export class NewPassword {
 
 token:string =''
   errorMessage=  signal('');
+  succesMessage=  signal('');
 
   
 private readonly _authService=inject(AuthService)
@@ -50,6 +51,8 @@ newpassword(){
   this._authService.resetpassword(data).subscribe({
     next:(res)=>{console.log(res)
       // this.router.navigate(['/auth/restmassege']);
+    this.succesMessage.set(res.message)
+
     },
   error:(err)=>{
     this.errorMessage.set(err.error.message)

@@ -83,7 +83,7 @@
            name="username"
            type="text"
            placeholder="user123"
-           class="main-input"  />
+           class="main-input" />
           @if (infoform.get('username')?.errors&&infoform.get('username')?.touched) {
            <div class="font"> 
             @if (infoform.get('username')?.getError('pattern')) {
@@ -227,7 +227,9 @@
 
        <!-- Submit button -->
       <button class="bg-blue-50 text-black rounded border border-blue-600 my-3 px-5 py-2 w-full hover:bg-blue-200 cursor-pointer" 
-             type="submit" >
+             type="submit"
+              [disabled]="infoform.invalid"
+     [class.bg-gray-500]="infoform.invalid" >
             Next
            </button>
 

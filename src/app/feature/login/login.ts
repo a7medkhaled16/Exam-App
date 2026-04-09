@@ -31,7 +31,7 @@ router=inject(Router)
 
 loginform:FormGroup=new FormGroup({
   username:new FormControl('',[Validators.required]),
-  password:new FormControl('',[Validators.required])
+  password:new FormControl('',[Validators.required,Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)])
 })
 
 login(){
