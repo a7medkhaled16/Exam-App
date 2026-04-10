@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../../../../dist/authlib';
 import { Validation } from '../../../shared/component/validation/validation';
+import { Errorbanner } from "../errorbanner/errorbanner";
 
 interface ApiError {
   message: string;
@@ -15,7 +16,7 @@ interface ErrorResponse {
 
 @Component({
   selector: 'app-login',
-  imports: [PasswordModule, RouterLink, RouterModule, ReactiveFormsModule, Validation],
+  imports: [PasswordModule, RouterLink, RouterModule, ReactiveFormsModule, Validation, Errorbanner],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -36,7 +37,6 @@ loginform:FormGroup=new FormGroup({
 login(){
 this.errorMessage.set('')
 
-  console.log(this.loginform.value)
   this._authService.login(this.loginform.value).subscribe({
 
     next:(res)=>{
@@ -45,8 +45,6 @@ this.errorMessage.set('')
       if (response?.error?.message) {
         this.errorMessage.set(response.error.message)
       }
-      console.log('full response',res)
-      console.log(this.loginform)
     }
   })
 }

@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { Registerservice } from '../../services/registerservice';
 import { AuthService } from '../../../../../../../dist/authlib';
 import { Validation } from '../../../../../shared/component/validation/validation';
+import { Errorbanner } from "../../../errorbanner/errorbanner";
 
 
 @Component({
   selector: 'app-accountpassword',
-  imports: [PasswordModule, ReactiveFormsModule, Validation],
+  imports: [PasswordModule, ReactiveFormsModule, Validation, Errorbanner],
   templateUrl: './accountpassword.html',
   styleUrl: './accountpassword.css',
 })
@@ -50,7 +51,6 @@ register(){
     },
   error:(err)=>{
     this.errorMessage.set(err.error.message)
-    console.log('error',err)
   }
   })
 }

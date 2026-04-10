@@ -4,11 +4,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../../dist/authlib';
 import { Validation } from '../../../shared/component/validation/validation';
+import { Errorbanner } from "../errorbanner/errorbanner";
 
 
 @Component({
   selector: 'app-new-password',
-  imports: [PasswordModule, ReactiveFormsModule, RouterLink, Validation],
+  imports: [PasswordModule, ReactiveFormsModule, RouterLink, Validation, Errorbanner],
   templateUrl: './new-password.html',
   styleUrl: './new-password.css',
 })
@@ -49,14 +50,13 @@ newpassword(){
   confirmPassword: this.resetpassform.value.newpassword
 }
   this._authService.resetpassword(data).subscribe({
-    next:(res)=>{console.log(res)
+    next:(res)=>{
       // this.router.navigate(['/auth/restmassege']);
     this.succesMessage.set(res.message)
 
     },
   error:(err)=>{
     this.errorMessage.set(err.error.message)
-    console.log('error',err)
    }
   })
 }

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Registerservice } from '../../services/registerservice';
 import { AuthService } from '../../../../../../../dist/authlib';
 import { Validation } from '../../../../../shared/component/validation/validation';
+import { Errorbanner } from "../../../errorbanner/errorbanner";
 
 
 interface ApiError {
@@ -18,7 +19,7 @@ interface ErrorResponse {
 
 @Component({
   selector: 'app-creat-account',
-  imports: [ReactiveFormsModule, Validation],
+  imports: [ReactiveFormsModule, Validation, Errorbanner],
 templateUrl: './creat-account.html',
   styleUrl: './creat-account.css',
 })
@@ -47,8 +48,6 @@ this._authService.sendverifiy(this.emailform.value).subscribe({
         this.errorMessage.set(response.error.message) ;
         return
       }
-      console.log('full response',res)
-      console.log(this.emailform)
       this.router.navigate(['/auth/otp']);
     }
 
