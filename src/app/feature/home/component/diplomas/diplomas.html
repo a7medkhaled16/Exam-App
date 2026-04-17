@@ -1,0 +1,30 @@
+<div class="flex-1 p-6 bg-gray-50 overflow-y-auto">
+  
+  <!-- Header -->
+  <div class="flex items-center justify-between bg-blue-600 text-white px-5 py-3 rounded-xl mb-6">
+    <div class="flex items-center gap-2 font-bold text-lg">
+      <i class="pi pi-graduation-cap"></i>
+      Diplomas
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-3 gap-4 font">
+    
+    @for (diploma of diplomas; track diploma.title) {
+      <div class="relative rounded-xl overflow-hidden cursor-pointer group h-48 shadow-sm hover:shadow-md transition-shadow">
+        <img [src]="diploma.img" [alt]="diploma.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-3 text-white">
+          <p class="font-bold text-sm">{{ diploma.title }}</p>
+          <p class="text-xs text-gray-300">{{ diploma.desc }}</p>
+        </div>
+      </div>
+    }
+
+  </div>
+
+  <!-- Scroll more -->
+  <p class="text-center text-sm text-gray-400 mt-6 cursor-pointer hover:text-blue-600 font">Scroll to view more</p>
+
+</div>

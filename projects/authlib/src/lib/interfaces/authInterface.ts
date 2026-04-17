@@ -20,6 +20,12 @@ export interface registerReq {
   phone: string
 }
 
+export interface VerifyOtp {
+  email: string;
+}
+export interface forgetpass {
+  username: string;
+}
 
 export interface registerRes {
   status: boolean

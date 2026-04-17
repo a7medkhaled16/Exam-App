@@ -1,0 +1,46 @@
+
+<div class="flex h-screen overflow-hidden bg-gray-50">
+
+  <!-- Sidebar - hidden on mobile, shown on md+ -->
+  <aside class="hidden md:flex ">
+    <app-sidebar />
+  </aside>
+
+  <!-- Mobile sidebar overlay -->
+  <div 
+    class="fixed inset-0 z-40 bg-black/50 md:hidden"
+    [class.hidden]="!sidebarOpen"
+    (click)="sidebarOpen = false">
+  </div>
+
+  <!-- Mobile sidebar drawer -->
+  <aside 
+    class="fixed inset-y-0 left-0 z-50 md:hidden transition-transform duration-300"
+    [class.-translate-x-full]="!sidebarOpen"
+    [class.translate-x-0]="sidebarOpen">
+    <app-sidebar />
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
+
+    <!-- Mobile top bar -->
+    <header class="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200 md:hidden">
+      <button (click)="sidebarOpen = !sidebarOpen" class="text-gray-600">
+        <i class="pi pi-bars text-xl"></i>
+      </button>
+      <div class="text-lg font-black text-gray-900">ELEVATE</div>
+      <div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-sm">F</div>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-1 overflow-y-auto">
+      <!-- <app-diplomas/> -->
+      <!-- <app-exams/> -->
+       <!-- <app-questions /> -->
+        <app-answers/>
+    </main>
+
+  </div>
+
+</div>

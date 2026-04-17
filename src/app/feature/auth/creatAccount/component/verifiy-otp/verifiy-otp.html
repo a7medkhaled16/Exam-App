@@ -54,15 +54,19 @@ user@example.com. <a routerLink="/auth/register" class="font-medium text-blue-60
 }@else{
     <p class="mt-6 text-center text-sm text-gray-500">
       Didn’t receive the code? 
-      <a routerLink="auth/register" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+      <a (click)="sendVerify()" class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
         Resend
       </a>
     </p>
 }
+
+       <app-errorbanner [errorMessage]="errorMessage()"/>  
+
       </div>
   
       <!-- Submit button -->
      <button class="register-btn font" 
+      [disabled]="Otpform.invalid"
             type="submit" >
            Verify Code
           </button>

@@ -43,7 +43,6 @@ register(){
   firstName: this.registerservice.firstname,
   lastName: this.registerservice.lastname,
   phone: this.registerservice.phone,
-
 }
    this._authService.register(data).subscribe({
     next:(res)=>{console.log(res)

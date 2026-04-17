@@ -31,10 +31,7 @@ submiteinfo(){
       this.registerservice.lastname=this.infoform.value.lastname
       this.registerservice.username=this.infoform.value.username
       this.registerservice.phone=this.infoform.value.phone
-      console.log( this.registerservice.firstname,
-      this.registerservice.lastname,
-      this.registerservice.username,
-      this.registerservice.phone);
+     
 }
 
 }

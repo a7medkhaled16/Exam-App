@@ -3,8 +3,7 @@ import { authApi } from './base/authApi';
 import { catchError, map, Observable, of } from 'rxjs';
 import {HttpClient} from '@angular/common/http'
 import { authEndPoint } from './enums/authEndPoint';
-import { Adaptorservice } from './adaptor/adaptorservice';
-import {  confirmReq, registerReq, registerRes, resetpassReq, verifyRes } from './interfaces/authInterface';
+import {  confirmReq, registerReq, registerRes, resetpassReq, verifyRes , VerifyOtp, forgetpass } from './interfaces/authInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +11,13 @@ import {  confirmReq, registerReq, registerRes, resetpassReq, verifyRes } from '
 export class AuthService implements authApi {
 
   private httpClient= inject(HttpClient)
-  private adaptorservice= inject(Adaptorservice)
 
-   sendverifiy(data: {email:'string'}): Observable<verifyRes> {
-    return this.httpClient.post<verifyRes>(authEndPoint.SendEmailVerification,data).pipe(catchError (err => of(err)))
+   sendverifiy(data: VerifyOtp): Observable<verifyRes> {
+    return this.httpClient.post<verifyRes>(authEndPoint.SendEmailVerification,data)
   }
 
    confirmverifiy(data: confirmReq): Observable<verifyRes> {
-    return this.httpClient.post<verifyRes>(authEndPoint.ConfirmEmailVerification,data).pipe(catchError (err => of(err)))
+    return this.httpClient.post<verifyRes>(authEndPoint.ConfirmEmailVerification,data)
   }
 
    register(data: registerReq): Observable<registerRes> {
@@ -30,7 +28,7 @@ export class AuthService implements authApi {
     return this.httpClient.post<registerRes>(authEndPoint.LOGIN,data).pipe(catchError (err => of(err)))
   } 
 
-   forgetpassword(data: {username:'string'}): Observable<verifyRes> {
+   forgetpassword(data: forgetpass): Observable<verifyRes> {
     return this.httpClient.post<verifyRes>(authEndPoint.ChangePassword,data)
   }
 
@@ -38,6 +36,8 @@ export class AuthService implements authApi {
     return this.httpClient.post<verifyRes>(authEndPoint.ResetPassword,data)
   }
 
-
+   islogged():boolean{
+    return !!localStorage.getItem('savetoken')
+  }
   
 }

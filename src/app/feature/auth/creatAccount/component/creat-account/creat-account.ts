@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Registerservice } from '../../services/registerservice';
 import { AuthService } from '../../../../../../../dist/authlib';
@@ -8,18 +8,11 @@ import { Validation } from '../../../../../shared/component/validation/validatio
 import { Errorbanner } from "../../../errorbanner/errorbanner";
 
 
-interface ApiError {
-  message: string;
-}
-
-interface ErrorResponse {
-  error: ApiError;
-}
 
 
 @Component({
   selector: 'app-creat-account',
-  imports: [ReactiveFormsModule, Validation, Errorbanner],
+  imports: [ReactiveFormsModule, Validation, Errorbanner, RouterLink],
 templateUrl: './creat-account.html',
   styleUrl: './creat-account.css',
 })
@@ -41,14 +34,11 @@ sendVerify(){
 this.errorMessage.set('')
   this.registerservice.email=this.emailform.value.email
 this._authService.sendverifiy(this.emailform.value).subscribe({
-   next:(res)=>{
-       const response = res as unknown as ErrorResponse;
-      
-      if (response?.error?.message) {
-        this.errorMessage.set(response.error.message) ;
-        return
-      }
+   next: (res) => {
       this.router.navigate(['/auth/otp']);
+    },
+    error: (err) => {
+      this.errorMessage.set(err.error?.message);
     }
 
 })

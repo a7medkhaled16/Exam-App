@@ -31,7 +31,7 @@
       
 
       <!-- Submit button -->
-     <button class="register-btn font" 
+     <button class="register-btn font flex justify-center" 
      [disabled]="emailform.invalid"
             type="submit" >
            next <div class="p-1">
@@ -56,10 +56,10 @@
     <!-- Sign-up link -->
     <p class="mt-4 text-center text-sm text-gray-500 font">
       Already have an account?
-      <a class="font-medium text-blue-600 hover:underline hover:cursor-pointer">
+      <a class="font-medium text-blue-600 hover:underline hover:cursor-pointer" routerLink="/auth/login">
         Login
       </a>
-    </p>
+    </p>  
 
   </div>
 </div>

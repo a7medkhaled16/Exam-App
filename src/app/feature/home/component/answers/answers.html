@@ -1,0 +1,79 @@
+<div class="flex-1 p-6 bg-gray-50 overflow-y-auto">
+
+  <!-- Breadcrumb -->
+  <div class="flex items-center gap-2 text-xs text-gray-400 mb-4">
+    <span>Diplomas</span><span>/</span>
+    <span>Frontend Development</span><span>/</span>
+    <span class="text-blue-600 font-medium">CSS Exam</span>
+  </div>
+
+  <!-- Header -->
+  <div class="flex items-center bg-blue-600 text-white px-5 py-3 rounded-xl mb-6">
+    <div class="flex items-center gap-2 font-bold text-lg">
+      <i class="pi pi-question-circle"></i>
+      CSS Exam Questions
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="flex justify-between text-xs text-gray-500 mb-6">
+    <span>Frontend Development – CSS Quiz</span>
+    <span>Question <strong class="text-blue-600">25</strong> of 25</span>
+  </div>
+
+  <p class="font-bold text-gray-800 text-lg mb-4">Results:</p>
+
+  <!-- Results Card -->
+  <div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+    <div class="flex gap-6">
+
+      <!-- Donut Chart -->
+      <div class="flex flex-col items-center justify-center shrink-0">
+        <div class="relative w-28 h-28">
+          <svg viewBox="0 0 36 36" class="w-full h-full -rotate-90">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e5e7eb" stroke-width="3.5"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#22c55e" stroke-width="3.5"
+              stroke-dasharray="80 20" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ef4444" stroke-width="3.5"
+              stroke-dasharray="20 80" stroke-dashoffset="-80" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="flex flex-col gap-1 mt-2 text-xs">
+          <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-green-500 inline-block"></span> Correct: 20</div>
+          <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-red-500 inline-block"></span> Incorrect: 25</div>
+        </div>
+      </div>
+
+      <!-- Questions Review -->
+      <div class="flex flex-col gap-4 flex-1">
+        @for (q of reviewQuestions; track q.question) {
+          <div>
+            <p class="font-semibold text-sm text-gray-800 mb-1">{{ q.question }}</p>
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2 bg-red-50 border border-red-200 rounded px-3 py-1.5">
+                <span class="w-3 h-3 rounded-full border-2 border-red-400 bg-red-400 shrink-0"></span>
+                <span class="text-xs text-gray-700">{{ q.wrong }}</span>
+              </div>
+              <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded px-3 py-1.5">
+                <span class="w-3 h-3 rounded-full border-2 border-gray-300 shrink-0"></span>
+                <span class="text-xs text-gray-700">{{ q.correct }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="flex gap-3">
+    <button class="flex-1 border border-gray-300 text-gray-600 py-2.5 rounded-lg text-sm hover:bg-gray-100 flex items-center justify-center gap-2">
+      <i class="pi pi-refresh"></i> Restart
+    </button>
+    <button class="flex-1 bg-blue-600 text-white py-2.5 rounded-lg text-sm hover:bg-blue-700 flex items-center justify-center gap-2">
+      <i class="pi pi-compass"></i> Explore
+    </button>
+  </div>
+
+</div>

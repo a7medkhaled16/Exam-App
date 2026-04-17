@@ -1,0 +1,59 @@
+<div class="flex-1 p-6 bg-gray-50 overflow-y-auto">
+
+  <!-- Breadcrumb -->
+  <div class="flex items-center gap-2 text-xs text-gray-400 mb-4">
+    <span>Diplomas</span><span>/</span>
+    <span>Frontend Development</span><span>/</span>
+    <span class="text-blue-600 font-medium">CSS Exam</span>
+  </div>
+
+  <!-- Header -->
+  <div class="flex items-center justify-between bg-blue-600 text-white px-5 py-3 rounded-xl mb-6">
+    <div class="flex items-center gap-2 font-bold text-lg">
+      <i class="pi pi-question-circle"></i>
+      CSS Exam Questions
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+    <span>Frontend Development – CSS Quiz</span>
+    <span>Question <strong>1</strong> of 25</span>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="w-full h-1.5 bg-gray-200 rounded-full mb-6">
+    <div class="h-1.5 bg-blue-600 rounded-full" style="width: 4%"></div>
+  </div>
+
+  <!-- Timer -->
+  <div class="flex justify-end mb-4">
+    <div class="w-12 h-12 rounded-full border-4 border-blue-600 flex items-center justify-center text-blue-700 font-bold text-sm">
+      06:33
+    </div>
+  </div>
+
+  <!-- Question -->
+  <p class="font-bold text-gray-800 text-lg mb-4">What does CSS stand for?</p>
+
+  <!-- Options -->
+  <div class="flex flex-col gap-3 mb-8">
+    @for (option of options; track option; let i = $index) {
+      <label class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3 cursor-pointer hover:border-blue-400 transition-colors">
+        <input type="radio" name="answer" [value]="option" class="accent-blue-600" />
+        <span class="text-sm text-gray-700">{{ option }}</span>
+      </label>
+    }
+  </div>
+
+  <!-- Navigation -->
+  <div class="flex gap-3">
+    <button class="flex-1 border border-gray-300 text-gray-500 py-2 rounded-lg text-sm hover:bg-gray-100">
+      ← Previous
+    </button>
+    <button class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700">
+      Next →
+    </button>
+  </div>
+
+</div>
