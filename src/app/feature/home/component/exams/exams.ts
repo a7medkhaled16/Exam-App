@@ -1,18 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Exam, diplomas } from '../../models/home.interface';
+import { Homeservice } from '../../services/homeservice';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-exams',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './exams.html',
   styleUrl: './exams.css',
 })
 export class Exams {
-  exams = [
-    { title: 'HTML Exam', short: 'HTML', color: '#e34c26', questions: 25, minutes: 20, desc: 'Build the backbone of the web with HTML...' },
-    { title: 'CSS Exam', short: 'CSS', color: '#264de4', questions: 25, minutes: 20, desc: 'Unlock the power of Cascading Style Sheets...' },
-    { title: 'JavaScript Exam', short: 'JS', color: '#f7df1e', questions: 25, minutes: 20, desc: 'Bring your web pages to life with JavaScript...' },
-    { title: 'React Exam', short: 'Re', color: '#61dafb', questions: 25, minutes: 20, desc: 'Dive into React, the industry-leading JS library...' },
-    { title: 'Angular Exam', short: 'Ng', color: '#dd0031', questions: 75, minutes: 20, desc: 'Master Angular, Google\'s comprehensive framework...' },
-    { title: 'Vue Exam', short: 'Vue', color: '#42b883', questions: 25, minutes: 20, desc: 'Discover Vue.js – the progressive JS Framework...' },
-  ];
+  private route = inject(ActivatedRoute);
+  private homeservice = inject(Homeservice);
+  private platformId = inject(PLATFORM_ID);
+  diplomaName : string = '' 
+  
+
+
+  allExams: Exam[] = [];
+
+  getExams() {
+    const diplomaId = this.route.snapshot.params['id']; 
+    this.homeservice.getExams(diplomaId).subscribe({
+      next: (res) => {
+        this.diplomaName=history.state?.dimplomaName || '' 
+        this.homeservice.diplomaName.set(history.state?.dimplomaName || '') 
+        console.log(res) 
+      this.allExams = res.payload.data },
+      error: (err) => { console.log(err) }
+    });
+  }
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.getExams();
+    }
+  }
 }

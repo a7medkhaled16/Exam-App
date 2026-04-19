@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Homeservice } from '../../services/homeservice';
+import { isPlatformBrowser } from '@angular/common';
+import { Daum } from '../../models/home.interface';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-diplomas',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './diplomas.html',
   styleUrl: './diplomas.css',
 })
 export class Diplomas {
-
-  diplomas = [
-    { title: 'Flutter Development', desc: 'Discover Flutter...', img: 'https://picsum.photos/seed/flutter/400/300' },
-    { title: 'AI & ML Development', desc: 'Explore the frontiers...', img: 'https://picsum.photos/seed/ai/400/300' },
-    { title: 'Back-End Web Development', desc: 'Become a professional...', img: 'https://picsum.photos/seed/backend/400/300' },
-    { title: 'Data Analysis', desc: 'Become a professional...', img: 'https://picsum.photos/seed/data/400/300' },
-    { title: 'Software Testing', desc: 'Become a professional...', img: 'https://picsum.photos/seed/testing/400/300' },
-    { title: 'Cyber Security', desc: 'Become a professional...', img: 'https://picsum.photos/seed/cyber/400/300' },
-  ];
-
+allDimplomas:Daum[]=[]
+ private homeservice = inject(Homeservice)
+ private platformId = inject(PLATFORM_ID);
+ getDiplomas(){
+  this.homeservice.getDimplomas().subscribe({
+    next:(res)=>{
+      this.allDimplomas=res.payload.data
+      console.log(res)},
+    error:(err)=>{console.log(err)}
+  })
+ }
+ngOnInit():void{
+   if (isPlatformBrowser(this.platformId)) {
+      this.getDiplomas();
+    }
+  
+}
 }

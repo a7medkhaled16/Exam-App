@@ -1,59 +1,156 @@
-<div class="flex-1 p-6 bg-gray-50 overflow-y-auto">
+<div class="min-h-screen bg-gray-50 p-6 font">
 
-  <!-- Breadcrumb -->
-  <div class="flex items-center gap-2 text-xs text-gray-400 mb-4">
-    <span>Diplomas</span><span>/</span>
-    <span>Frontend Development</span><span>/</span>
-    <span class="text-blue-600 font-medium">CSS Exam</span>
+   <div class="flex items-center gap-2 text-xs text-gray-400 mb-4">
+    <span class="cursor-pointer hover:text-blue-600">Diplomas</span>
+    <span>/</span>
+    <span class="text-gray-600 font-medium">{{diplomaName}}</span>
+    <span>/</span>
+    <span class="text-blue-600 font-medium">Exams</span>
   </div>
 
   <!-- Header -->
-  <div class="flex items-center justify-between bg-blue-600 text-white px-5 py-3 rounded-xl mb-6">
-    <div class="flex items-center gap-2 font-bold text-lg">
-      <i class="pi pi-question-circle"></i>
-      CSS Exam Questions
+ <div class="flex"> 
+
+    <div class="mr-2">
+<svg width="35" height="70" viewBox="0 0 38 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="37" height="76" fill="white"/>
+<rect x="0.5" y="0.5" width="37" height="76" stroke="#155DFC"/>
+<path d="M22 44.5L16 38.5L22 32.5" stroke="#155DFC" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
     </div>
-  </div>
-
-  <!-- Meta -->
-  <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-    <span>Frontend Development – CSS Quiz</span>
-    <span>Question <strong>1</strong> of 25</span>
-  </div>
-
-  <!-- Progress bar -->
-  <div class="w-full h-1.5 bg-gray-200 rounded-full mb-6">
-    <div class="h-1.5 bg-blue-600 rounded-full" style="width: 4%"></div>
-  </div>
-
-  <!-- Timer -->
-  <div class="flex justify-end mb-4">
-    <div class="w-12 h-12 rounded-full border-4 border-blue-600 flex items-center justify-center text-blue-700 font-bold text-sm">
-      06:33
+     <div class="flex items-center justify-between bg-blue-600 text-white px-5 py-3  mb-6 w-[96%]">
+    <div class="flex items-center gap-2">
+     <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.0438 16.875C17.4846 15.6219 18.3547 14.5652 19.4999 13.8921C20.6452 13.219 21.9917 12.973 23.301 13.1976C24.6102 13.4222 25.7978 14.1029 26.6533 15.1191C27.5088 16.1354 27.977 17.4216 27.975 18.75C27.975 22.5 22.35 24.375 22.35 24.375M22.5 31.875H22.5188M41.25 22.5C41.25 32.8553 32.8553 41.25 22.5 41.25C12.1447 41.25 3.75 32.8553 3.75 22.5C3.75 12.1447 12.1447 3.75 22.5 3.75C32.8553 3.75 41.25 12.1447 41.25 22.5Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+      <h2 class="text-2xl font-semibold ">{{examName}}  </h2>
     </div>
+
+  
+  </div>
   </div>
 
-  <!-- Question -->
-  <p class="font-bold text-gray-800 text-lg mb-4">What does CSS stand for?</p>
 
-  <!-- Options -->
-  <div class="flex flex-col gap-3 mb-8">
-    @for (option of options; track option; let i = $index) {
-      <label class="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3 cursor-pointer hover:border-blue-400 transition-colors">
-        <input type="radio" name="answer" [value]="option" class="accent-blue-600" />
-        <span class="text-sm text-gray-700">{{ option }}</span>
-      </label>
-    }
-  </div>
+  @if (allQuestions.length > 0) {
 
-  <!-- Navigation -->
-  <div class="flex gap-3">
-    <button class="flex-1 border border-gray-300 text-gray-500 py-2 rounded-lg text-sm hover:bg-gray-100">
-      ← Previous
-    </button>
-    <button class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm hover:bg-blue-700">
+    <!-- Progress Bar -->
+    <div class="flex justify-between">
+       <div class="w-[85%]">
+      <div class="flex justify-between">
+      <h4> {{examName}} </h4>
+       <div class="flex items-center justify-between mb-2">
+      <span class="text-sm text-gray-500">
+        Question <strong>{{ currentIndex + 1 }}</strong> of {{ totalQuestions }}
+      </span>
+    </div> 
+     </div>
+     
+    <div class="w-full bg-gray-200  h-3 mb-6">
+      <div
+        class="bg-blue-600 h-3  transition-all duration-300"
+        [style.width.%]="((currentIndex + 1) / totalQuestions) * 100">
+      </div>
+    </div> 
+     </div>
+<div>
+  <svg width="1" height="65" viewBox="0 0 1 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="0.5" y1="2.18557e-08" x2="0.499997" y2="65" stroke="#E5E7EB"/>
+</svg>
+
+</div>
+     <div>
+      <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_41826_416)">
+<path d="M65 32.5C65 50.4493 50.4493 65 32.5 65C14.5507 65 0 50.4493 0 32.5C0 14.5507 14.5507 0 32.5 0C50.4493 0 65 14.5507 65 32.5ZM9.75 32.5C9.75 45.0645 19.9355 55.25 32.5 55.25C45.0645 55.25 55.25 45.0645 55.25 32.5C55.25 19.9355 45.0645 9.75 32.5 9.75C19.9355 9.75 9.75 19.9355 9.75 32.5Z" fill="#DBEAFE"/>
+<path d="M65 32.5C65 39.3595 62.8297 46.043 58.7997 51.5939C54.7698 57.1447 49.0869 61.2781 42.5646 63.4023C36.0424 65.5266 29.0152 65.5327 22.4893 63.4198C15.9633 61.307 10.2732 57.1835 6.23362 51.6397C2.19399 46.0959 0.0120078 39.4161 4.9388e-05 32.5567C-0.011909 25.6972 2.14677 19.0099 6.16704 13.452C10.1873 7.89419 15.863 3.75087 22.3815 1.61527C28.9001 -0.520337 35.9272 -0.538713 42.4568 1.56277L39.4698 10.8439C34.899 9.3729 29.9801 9.38576 25.4171 10.8807C20.8541 12.3756 16.8811 15.2759 14.0669 19.1664C11.2527 23.0569 9.74166 27.7381 9.75003 32.5397C9.75841 37.3413 11.2858 42.0171 14.1135 45.8978C16.9413 49.7784 20.9243 52.6649 25.4925 54.1439C30.0607 55.6229 34.9796 55.6186 39.5452 54.1316C44.1108 52.6447 48.0888 49.7513 50.9098 45.8657C53.7308 41.9801 55.25 37.3016 55.25 32.5H65Z" fill="#155DFC"/>
+<path d="M15.94 35.276L19.3 29.156L20.26 29.204L16.9 35.324L15.94 35.276ZM18.1 36.692C17.484 36.692 16.948 36.512 16.492 36.152C16.044 35.792 15.7 35.28 15.46 34.616C15.22 33.952 15.1 33.164 15.1 32.252C15.1 31.332 15.22 30.54 15.46 29.876C15.7 29.212 16.044 28.7 16.492 28.34C16.948 27.972 17.484 27.788 18.1 27.788C18.724 27.788 19.26 27.972 19.708 28.34C20.156 28.7 20.5 29.212 20.74 29.876C20.98 30.54 21.1 31.332 21.1 32.252C21.1 33.164 20.98 33.952 20.74 34.616C20.5 35.28 20.156 35.792 19.708 36.152C19.26 36.512 18.724 36.692 18.1 36.692ZM18.1 35.684C18.5 35.684 18.84 35.544 19.12 35.264C19.408 34.984 19.628 34.588 19.78 34.076C19.94 33.556 20.02 32.948 20.02 32.252C20.02 31.54 19.94 30.928 19.78 30.416C19.628 29.896 19.408 29.496 19.12 29.216C18.84 28.936 18.5 28.796 18.1 28.796C17.708 28.796 17.368 28.936 17.08 29.216C16.792 29.496 16.568 29.896 16.408 30.416C16.256 30.928 16.18 31.54 16.18 32.252C16.18 32.948 16.256 33.556 16.408 34.076C16.568 34.588 16.792 34.984 17.08 35.264C17.368 35.544 17.708 35.684 18.1 35.684ZM25.2713 36.692C24.7193 36.692 24.2353 36.592 23.8193 36.392C23.4113 36.192 23.0833 35.912 22.8353 35.552C22.5953 35.192 22.4553 34.776 22.4153 34.304L23.4953 34.232C23.5593 34.712 23.7473 35.076 24.0593 35.324C24.3793 35.564 24.7833 35.684 25.2713 35.684C25.8233 35.684 26.2633 35.516 26.5913 35.18C26.9273 34.836 27.0953 34.364 27.0953 33.764C27.0953 33.364 27.0233 33.02 26.8793 32.732C26.7353 32.436 26.5273 32.212 26.2553 32.06C25.9913 31.9 25.6713 31.82 25.2953 31.82C24.9593 31.82 24.6353 31.904 24.3233 32.072C24.0193 32.232 23.7993 32.464 23.6633 32.768H22.5593L23.1233 27.98H27.6593V28.988H24.0713L23.6873 32.132L23.4953 31.94C23.6233 31.692 23.7913 31.488 23.9993 31.328C24.2073 31.168 24.4353 31.048 24.6833 30.968C24.9393 30.88 25.1913 30.836 25.4393 30.836C25.9833 30.836 26.4593 30.964 26.8673 31.22C27.2833 31.468 27.6033 31.812 27.8273 32.252C28.0593 32.692 28.1753 33.196 28.1753 33.764C28.1753 34.332 28.0513 34.84 27.8033 35.288C27.5553 35.728 27.2113 36.072 26.7713 36.32C26.3393 36.568 25.8393 36.692 25.2713 36.692ZM31.7466 36.5V35.036H33.2346V36.5H31.7466ZM31.7466 31.868V30.404H33.2346V31.868H31.7466ZM39.4939 36.5V30.188H37.2619V29.3H38.4139C38.7179 29.3 38.9619 29.256 39.1459 29.168C39.3379 29.08 39.4739 28.94 39.5539 28.748C39.6419 28.556 39.6859 28.3 39.6859 27.98H40.5259V36.5H39.4939ZM36.8059 36.5V35.492H42.5659V36.5H36.8059ZM46.8092 36.692C45.8893 36.692 45.1813 36.472 44.6853 36.032C44.1893 35.584 43.9213 35.008 43.8813 34.304L44.9493 34.232C44.9973 34.752 45.1893 35.124 45.5253 35.348C45.8693 35.572 46.2973 35.684 46.8092 35.684C47.1533 35.684 47.4773 35.636 47.7813 35.54C48.0853 35.436 48.3293 35.272 48.5133 35.048C48.7053 34.816 48.8013 34.508 48.8013 34.124C48.8013 33.748 48.7173 33.44 48.5493 33.2C48.3813 32.952 48.1493 32.772 47.8533 32.66C47.5653 32.54 47.2373 32.48 46.8693 32.48H46.1973V31.472H46.8693C47.1653 31.472 47.4373 31.428 47.6853 31.34C47.9333 31.252 48.1293 31.112 48.2733 30.92C48.4253 30.72 48.5013 30.46 48.5013 30.14C48.5013 29.7 48.3613 29.368 48.0813 29.144C47.8013 28.912 47.3973 28.796 46.8693 28.796C46.3333 28.796 45.9253 28.904 45.6453 29.12C45.3733 29.336 45.2093 29.632 45.1533 30.008L44.0732 29.936C44.1533 29.296 44.4333 28.78 44.9133 28.388C45.3933 27.988 46.0453 27.788 46.8693 27.788C47.4213 27.788 47.9013 27.884 48.3093 28.076C48.7173 28.26 49.0293 28.524 49.2453 28.868C49.4693 29.212 49.5813 29.62 49.5813 30.092C49.5813 30.62 49.4133 31.048 49.0773 31.376C48.7493 31.696 48.2613 31.916 47.6133 32.036V31.82C48.3093 31.9 48.8613 32.148 49.2693 32.564C49.6773 32.98 49.8813 33.5 49.8813 34.124C49.8813 34.668 49.7493 35.132 49.4853 35.516C49.2213 35.9 48.8573 36.192 48.3933 36.392C47.9293 36.592 47.4013 36.692 46.8092 36.692Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_41826_416">
+<rect width="65" height="65" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+     </div>
+
+    </div>
+
+    <!-- Question -->
+    <h2 class="text-blue-600 font-bold  mb-4">
+      {{ currentQuestion.text }}
+    </h2>
+
+    <!-- Answers -->
+    <div class="flex flex-col gap-3 mb-8">
+      @for (answer of currentQuestion.answers; track answer.id) {
+        <div
+          (click)="selectAnswer(answer.id)"
+          class="flex items-center gap-3 bg-gray-100 p-4 border  cursor-pointer transition-all duration-200"
+          [class.border-blue-600]="selectedAnswerId === answer.id"
+          [class.bg-blue-50]="selectedAnswerId === answer.id"
+          [class.border-gray-200]="selectedAnswerId !== answer.id"
+          [class.bg-gray-50]="selectedAnswerId !== answer.id">
+
+          <!-- Radio -->
+          <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center"
+            [class.border-blue-600]="selectedAnswerId === answer.id"
+            [class.border-gray-400]="selectedAnswerId !== answer.id">
+            @if (selectedAnswerId === answer.id) {
+              <div class="w-2.5 h-2.5 rounded-full bg-blue-600"></div>
+            }
+          </div>
+
+          <span class="text-gray-700 text-sm">{{ answer.text }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Buttons -->
+   <!-- Buttons -->
+<div class="flex gap-4">
+  <button
+    (click)="previous()"
+    [disabled]="currentIndex === 0"
+    class="flex-1 py-3 font-bold transition-all"
+    [class.bg-gray-200]="currentIndex === 0"
+    [class.text-gray-400]="currentIndex === 0"
+    [class.bg-gray-300]="currentIndex > 0"
+    [class.text-gray-700]="currentIndex > 0">
+    ← Previous
+  </button>
+
+  <!-- لو مش آخر سؤال اعرض Next -->
+  @if (!isLastQuestion) {
+    <button (click)="next()"
+      class="flex-1 py-3 font-bold text-white bg-blue-600">
       Next →
     </button>
-  </div>
+  }
+
+  <!-- لو آخر سؤال اعرض Submit -->
+  @if (isLastQuestion) {
+    <button (click)="submitExam()"
+      [disabled]="!allAnswered"
+      class="flex-1 py-3 font-bold text-white transition-all"
+      [class.bg-blue-600]="allAnswered"
+      [class.bg-blue-300]="!allAnswered">
+      Submit ✓
+    </button>
+  }
+
+  <!-- @if (showResults) {
+  <button (click)="submitExam()"
+      class="flex-1 py-3 font-bold bg-green-500 text-white transition-all"
+      >
+      showResults ✓
+    </button>
+} -->
+</div>
+
+  } @else {
+    <p class="text-center text-gray-400 mt-10">Loading questions...</p>
+  }
 
 </div>

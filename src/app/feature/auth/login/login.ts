@@ -5,14 +5,8 @@ import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../../../../dist/authlib';
 import { Validation } from '../../../shared/component/validation/validation';
 import { Errorbanner } from "../errorbanner/errorbanner";
+import { Authservice2 } from '../services/authservice';
 
-interface ApiError {
-  message: string;
-}
-
-interface ErrorResponse {
-  error: ApiError;
-}
 
 @Component({
   selector: 'app-login',
@@ -26,6 +20,7 @@ value:string=''
 
 
 _authService=inject(AuthService)
+authService=inject(Authservice2)
 router=inject(Router)
 
 
@@ -40,12 +35,13 @@ this.errorMessage.set('')
   this._authService.login(this.loginform.value).subscribe({
 
     next:(res)=>{
-       const response = res as unknown as ErrorResponse;;
+      this.authService.saveToken(res.payload.token)
+      this.router.navigate(['/main']);
       
-      if (response?.error?.message) {
-        this.errorMessage.set(response.error.message)
-      }
-    }
+    },
+  error:(err)=>{
+    this.errorMessage.set(err.error.message)
+   }
   })
 }
 

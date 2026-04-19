@@ -25,7 +25,7 @@ export class AuthService implements authApi {
   }
 
    login(data: registerReq): Observable<registerRes> {
-    return this.httpClient.post<registerRes>(authEndPoint.LOGIN,data).pipe(catchError (err => of(err)))
+    return this.httpClient.post<registerRes>(authEndPoint.LOGIN,data)
   } 
 
    forgetpassword(data: forgetpass): Observable<verifyRes> {
@@ -36,8 +36,6 @@ export class AuthService implements authApi {
     return this.httpClient.post<verifyRes>(authEndPoint.ResetPassword,data)
   }
 
-   islogged():boolean{
-    return !!localStorage.getItem('savetoken')
-  }
+   
   
 }
