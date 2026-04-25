@@ -6,6 +6,7 @@ import { AuthService } from '../../../../../dist/authlib';
 import { Validation } from '../../../shared/component/validation/validation';
 import { Errorbanner } from "../errorbanner/errorbanner";
 import { Authservice2 } from '../services/authservice';
+import { Homeservice } from '../../home/services/homeservice';
 
 
 @Component({
@@ -21,6 +22,7 @@ value:string=''
 
 _authService=inject(AuthService)
 authService=inject(Authservice2)
+homeService=inject(Homeservice)
 router=inject(Router)
 
 
@@ -36,6 +38,8 @@ this.errorMessage.set('')
 
     next:(res)=>{
       this.authService.saveToken(res.payload.token)
+      this.homeService.userName.set(res.payload.user.username)
+      this.homeService.email.set(res.payload.user.email)
       this.router.navigate(['/main']);
       
     },

@@ -3,8 +3,6 @@ import { Injectable, signal } from '@angular/core';
 import { enviroment } from '../../../../environment/environment.prod';
 import { Observable } from 'rxjs';
 import { diplomas, Examss, Questionss, SubmissionResult, SubmitExam } from '../models/home.interface';
-import { Exams } from '../component/exams/exams';
-import { Questions } from '../component/questions/questions';
 
 
 @Injectable({
@@ -43,8 +41,11 @@ getSubmission(id: string): Observable<SubmissionResult> {
   );
 }
 
+email = signal('');
+userName = signal('');
 diplomaName = signal('');
 examName = signal('');
+examId = signal('')
 
 
 } 

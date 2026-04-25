@@ -26,6 +26,7 @@ export class Exams {
       next: (res) => {
         this.diplomaName=history.state?.dimplomaName || '' 
         this.homeservice.diplomaName.set(history.state?.dimplomaName || '') 
+        this.homeservice.examId.set(res.payload.data[0].diplomaId)
         console.log(res) 
       this.allExams = res.payload.data },
       error: (err) => { console.log(err) }

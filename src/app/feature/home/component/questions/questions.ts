@@ -1,12 +1,12 @@
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Homeservice } from '../../services/homeservice';
 import { Question, SubmissionResult, diplomas } from '../../models/home.interface';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-questions',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './questions.html',
   styleUrl: './questions.css',
 })
@@ -25,6 +25,7 @@ router=inject(Router)
   showResults: boolean = false;
   diplomaName:string=''
   examName:string=''
+  examId:string=''
 
   get currentQuestion(): Question {
     return this.allQuestions[this.currentIndex];
@@ -50,6 +51,10 @@ router=inject(Router)
   // ← بيحفظ الإجابة بالـ questionId
   selectAnswer(answerId: string): void {
     this.selectedAnswers[this.currentQuestion.id] = answerId;
+  }
+
+   returnBack(): void {
+    this.router.navigate(['/main/exams', this.examId]);
   }
 
   next(): void {
@@ -95,9 +100,10 @@ router=inject(Router)
   }
 
   ngOnInit(): void {
+     this.examId=this.homeservice.examId()
     if (isPlatformBrowser(this.platformId)) {
-
     this.getQuestions();
+
 
     }
   }
